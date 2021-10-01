@@ -9,7 +9,8 @@ import javax.persistence.*;
  * @version 1.0
  * @since 11/09/21
  */
-@Data
+@Getter
+@Setter
 @Entity
 public class UnitOfMeasure {
 

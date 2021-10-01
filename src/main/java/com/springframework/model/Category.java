@@ -1,6 +1,7 @@
 package com.springframework.model;
 
 import lombok.*;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -10,7 +11,8 @@ import java.util.Set;
  * @version 1.0
  * @since 13/09/21
  */
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(exclude = {"recipes"})
 @Entity
 public class Category {

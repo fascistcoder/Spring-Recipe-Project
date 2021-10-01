@@ -2,6 +2,7 @@ package com.springframework.controllers;
 
 import com.springframework.commands.IngredientCommand;
 import com.springframework.commands.RecipeCommand;
+import com.springframework.model.Recipe;
 import com.springframework.services.IngredientService;
 import com.springframework.services.RecipeService;
 import com.springframework.services.UnitOfMeasureService;
@@ -69,6 +70,21 @@ class IngredientControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("recipe/ingredient/show"))
                 .andExpect(model().attributeExists("ingredient"));
+    }
+
+    @Test
+    void testNewIngredientsForm() throws Exception{
+        RecipeCommand recipeCommand = new RecipeCommand();
+        recipeCommand.setId(1L);
+
+        when(recipeService.findCommandById(anyLong())).thenReturn(recipeCommand);
+        when(unitOfMeasureService.listAllUoms()).thenReturn(new HashSet<>());
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/recipe/1/ingredient/new"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("recipe/ingredient/ingredientform"))
+                .andExpect(model().attributeExists("ingredient"))
+                .andExpect(model().attributeExists("uomList"));
     }
 
     @Test

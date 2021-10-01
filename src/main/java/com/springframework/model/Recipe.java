@@ -1,6 +1,8 @@
 package com.springframework.model;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,7 +13,8 @@ import java.util.Set;
  * @version 1.0
  * @since 11/09/21
  */
-@Data
+@Getter
+@Setter
 @Entity
 public class Recipe {
 

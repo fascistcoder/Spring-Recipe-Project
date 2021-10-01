@@ -10,7 +10,8 @@ import java.math.BigDecimal;
  * @version 1.0
  * @since 11/09/21
  */
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Ingredient {

@@ -68,6 +68,13 @@ class RecipeControllerTest {
     }
 
     @Test
+    void testGetRecipeNumberFormatException() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/recipe/asdf/show"))
+                .andExpect(status().isBadRequest())
+                .andExpect(view().name("400error"));
+    }
+
+    @Test
     void testGetNewRecipeForm() throws Exception {
         RecipeCommand recipeCommand = new RecipeCommand();
 
@@ -76,6 +83,7 @@ class RecipeControllerTest {
                 .andExpect(view().name("recipe/recipeform"))
                 .andExpect(model().attributeExists("recipe"));
     }
+
 
     @Test
     void testPostNewRecipeForm() throws Exception {

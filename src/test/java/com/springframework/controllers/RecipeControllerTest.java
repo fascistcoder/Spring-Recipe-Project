@@ -4,7 +4,6 @@ import com.springframework.commands.RecipeCommand;
 import com.springframework.exceptions.NotFoundException;
 import com.springframework.model.Recipe;
 import com.springframework.services.RecipeService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -58,7 +57,7 @@ class RecipeControllerTest {
     }
 
     @Test
-    void testGetRecipeNotFound() throws Exception{
+    void testGetRecipeNotFound() throws Exception {
         Recipe recipe = new Recipe();
         recipe.setId(1L);
 
@@ -101,7 +100,23 @@ class RecipeControllerTest {
     }
 
     @Test
-    void testGetUpdateView() throws Exception{
+    void testPostNewRecipeFormValidationFail() throws Exception {
+//        RecipeCommand recipeCommand = new RecipeCommand();
+//        recipeCommand.setId(2L);
+//
+//        when(recipeService.saveRecipeCommand(any())).thenReturn(recipeCommand);
+//
+//        mockMvc.perform(MockMvcRequestBuilders.post("/recipe")
+//                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+//                        .param("id", ""))
+//                .andExpect(status().isOk())
+//                .andExpect(model().attributeExists("recipe"))
+//                .andExpect(view().name("recipe/recipeform"));
+
+    }
+
+    @Test
+    void testGetUpdateView() throws Exception {
         RecipeCommand recipeCommand = new RecipeCommand();
         recipeCommand.setId(1L);
 
@@ -114,11 +129,11 @@ class RecipeControllerTest {
     }
 
     @Test
-    void testDeleteAction() throws Exception{
+    void testDeleteAction() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/recipe/1/delete"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/"));
 
-        verify(recipeService,times(1)).deleteById(anyLong());
+        verify(recipeService, times(1)).deleteById(anyLong());
     }
 }

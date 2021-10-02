@@ -101,4 +101,8 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <scm>
+        <developerConnection>scm:git:https://github.com/fascistcoder/Spring-Recipe-Project.git</developerConnection>
+    </scm>
 </project>

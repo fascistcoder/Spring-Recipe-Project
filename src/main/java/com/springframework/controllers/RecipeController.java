@@ -3,15 +3,13 @@ package com.springframework.controllers;
 import com.springframework.commands.RecipeCommand;
 import com.springframework.exceptions.NotFoundException;
 import com.springframework.services.RecipeService;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.validation.Errors;
 
 import javax.validation.Valid;
 
@@ -49,14 +47,9 @@ public class RecipeController {
     }
 
     @PostMapping("recipe")
-    public String saveOrUpdate(@Valid @ModelAttribute("recipe") RecipeCommand command, BindingResult bindingResult){
+    public String saveOrUpdate(@Valid @ModelAttribute("recipe") RecipeCommand command, Errors errors){
 
-        if(bindingResult.hasErrors()){
-
-            bindingResult.getAllErrors().forEach(objectError -> {
-                log.debug(objectError.toString());
-            });
-
+        if(errors.hasErrors()) {
             return RECIPE_RECIPEFORM_URL;
         }
 
@@ -64,14 +57,6 @@ public class RecipeController {
 
         return "redirect:/recipe/" + savedCommand.getId() + "/show";
     }
-//
-//    @PostMapping("recipe")
-//    public String saveOrUpdate(@ModelAttribute("recipe") RecipeCommand command){
-//
-//        RecipeCommand savedCommand = recipeService.saveRecipeCommand(command);
-//
-//        return "redirect:/recipe/" + savedCommand.getId() + "/show";
-//    }
 
     @GetMapping("recipe/{id}/delete")
     public String deleteById(@PathVariable String id){

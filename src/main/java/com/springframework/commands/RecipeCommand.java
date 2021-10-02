@@ -24,7 +24,7 @@ import java.util.Set;
 public class RecipeCommand {
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Description Cannot Be Blank")
     @Size(min = 3, max = 255)
     private String description;
 
@@ -42,6 +42,7 @@ public class RecipeCommand {
 
     private String source;
 
+    @URL(message = "Please provide a valid URL")
     private String url;
 
     @NotBlank

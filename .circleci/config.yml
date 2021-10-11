@@ -30,7 +30,8 @@ jobs:
       # Then run your tests!
       - run:
           name: Test
-          command: mvn test cobertura:cobertura
+          command: mvn test
+#          cobertura:cobertura
 
       - run:
           name: Send to Codecov

@@ -20,6 +20,9 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
+      
+      - codecov/upload
+
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
@@ -27,7 +30,8 @@ jobs:
       # Then run your tests!
       - run:
           name: Test
-          command: mvn test
+          command: mvn test cobertura:cobertura
+
       - run:
           name: Send to Codecov
           command: bash <(curl -s https://codecov.io/bash) -t b21c707b-f9c5-4c01-8f79-d7473f1bc474

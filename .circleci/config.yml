@@ -30,7 +30,7 @@ jobs:
           command: mvn test
       - run:
           name: Send to Codecov
-          command: bash <(curl -s https://codecov.io/bash)
+          command: bash <(curl -s https://codecov.io/bash) -t b21c707b-f9c5-4c01-8f79-d7473f1bc474
 workflows:
   # Below is the definition of your workflow.
   # Inside the workflow, you provide the jobs you want to run, e.g this workflow runs the build-and-test job above.

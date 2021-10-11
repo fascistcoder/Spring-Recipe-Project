@@ -73,6 +73,7 @@
     </dependencies>
 
     <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -88,7 +89,7 @@
                             <format>html</format>
                             <format>xml</format>
                         </formats>
-                        <check />
+                        <check/>
                     </configuration>
                 </plugin>
                 <plugin>
